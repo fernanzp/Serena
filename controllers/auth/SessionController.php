@@ -37,9 +37,10 @@ class SessionController extends Controller {
             $usuario = $usuarios[0];
 
             // Verificar la contraseña con password_verify
-            if (password_verify($password, $usuario['contraseña'])) {
-                echo $this->sessionRegister($usuario);
-                return;
+            if (password_verify($password, $usuario->contraseña)) {
+                $this->sessionRegister($usuario);
+                header("Location: /Serena/public/index.php?uri=home"); 
+                exit();
             }
         }
 
