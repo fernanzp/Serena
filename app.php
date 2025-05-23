@@ -1,10 +1,10 @@
 <?php
 
-namespace app;
+namespace Serena;
 
-use app\classes\Autoloader;
-use app\classes\Router;
-use app\controllers\auth\SessionController;
+use classes\Autoloader;
+use classes\Router;
+use controllers\auth\SessionController;
 
 class App
 {

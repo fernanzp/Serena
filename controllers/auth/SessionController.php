@@ -1,10 +1,10 @@
 <?php
 
-namespace app\controllers\auth;
+namespace controllers\auth;
 
-use app\controllers\Controller;
-use app\classes\View;
-use app\models\Usuario;
+use controllers\Controller;
+use classes\View;
+use models\Usuario;
 
 class SessionController extends Controller {
     public function __construct() {
@@ -12,6 +12,8 @@ class SessionController extends Controller {
     }
 
     public function iniSession($params = null) {
+        echo "Estoy en iniSession<br>";
+
         $response = [
             'ua'    => ['sv' => 0],
             'title' => "Iniciar sesión",
@@ -35,7 +37,7 @@ class SessionController extends Controller {
             $usuario = $usuarios[0];
 
             // Verificar la contraseña con password_verify
-            if (password_verify($password, $usuario->contraseña)) {
+            if (password_verify($password, $usuario['contraseña'])) {
                 echo $this->sessionRegister($usuario);
                 return;
             }

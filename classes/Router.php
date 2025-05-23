@@ -1,8 +1,8 @@
 <?php
 
-namespace app\classes;
+namespace classes;
 
-use app\controllers\ErrorController;
+use controllers\ErrorController;
 
 class Router
 {
@@ -45,18 +45,29 @@ class Router
     private function getController()
     {
         $defaultController = 'Home';
-        $controller = $this->uri[0] ?? $defaultController;
-        unset($this->uri[0]);
 
-        $controller = ucfirst(strtolower($controller));
-        return 'app\\controllers\\' . $controller . 'Controller';
+        $folder = $this->uri[0] ?? null;
+        $controller = $this->uri[1] ?? $defaultController;
+
+        if ($folder && $controller && is_dir(CONTROLLERS . $folder)) {
+            unset($this->uri[0], $this->uri[1]);
+            return 'controllers\\' . $folder . '\\' . ucfirst($controller) . 'Controller';
+        }
+
+        $controller = $folder ?? $defaultController;
+        unset($this->uri[0]);
+        return 'controllers\\' . ucfirst($controller) . 'Controller';
     }
 
     private function getMethod()
     {
         $defaultMethod = 'index';
-        $method = $this->uri[1] ?? $defaultMethod;
-        unset($this->uri[1]);
+
+        // Si hay 3 partes: auth/session/inisession
+        // entonces [0]=auth, [1]=session, [2]=inisession
+        $method = $this->uri[2] ?? $defaultMethod;
+        unset($this->uri[2]);
+
         return $method;
     }
 

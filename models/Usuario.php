@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace models;
 
 class Usuario extends Model {
     protected $table;

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\classes;
+namespace classes;
 
 class Autoloader
 {
@@ -11,21 +11,16 @@ class Autoloader
 
     private static function autoload($class)
     {
+        echo "Intentando cargar: $class<br>";
+        
         // Convertimos el namespace en ruta de archivo
-        $classPath = str_replace('\\', DS, $class) . '.php';
+        $classPath = ROOT . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
 
-        // Posibles ubicaciones
-        $paths = [
-            CLASSES . $classPath,
-            CONTROLLERS . $classPath,
-            MODELS . $classPath
-        ];
+        echo "Buscando en: $classPath<br>";
 
-        foreach ($paths as $file) {
-            if (file_exists($file)) {
-                require_once $file;
-                return true;
-            }
+        if (file_exists($classPath)) {
+            require_once $classPath;
+            return true;
         }
 
         return false;

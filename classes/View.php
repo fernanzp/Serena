@@ -1,6 +1,6 @@
 <?php
 
-namespace app\classes;
+namespace classes;
 
 class View {
     public function __construct() {}
@@ -10,7 +10,7 @@ class View {
         extract($data);
 
         // Ruta a la vista
-        $viewFile = VIEWS . $view . '.view.php';
+        $viewFile = dirname(__DIR__) . '/resources/views/' . $view . '.view.php';
 
         if (file_exists($viewFile)) {
             require_once $viewFile;

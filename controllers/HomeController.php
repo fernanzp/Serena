@@ -1,9 +1,9 @@
 <?php
 
-namespace app\controllers;
+namespace controllers;
 
-use app\classes\View;
-use app\controllers\auth\SessionController as SC;
+use classes\View;
+use controllers\auth\SessionController as SC;
 
 class HomeController extends Controller
 {
@@ -20,6 +20,6 @@ class HomeController extends Controller
             'code'  => 200
         ];
 
-        View::render('home', $response);
+        //View::render('home', $response); <- Comentada de mientras
     }
 }
