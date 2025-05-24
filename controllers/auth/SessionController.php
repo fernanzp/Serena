@@ -11,14 +11,23 @@ class SessionController extends Controller {
         parent::__construct();
     }
 
-    public function iniSession($params = null) {
-        echo "Estoy en iniSession<br>";
+    public function iniSession($params = null)
+    {
+        $session = self::sessionValidate();
+        
+        if ($session && $session['sv']) {
+            // Ya hay sesión activa, redirigir al home directamente
+            header("Location: /Serena/public/index.php?uri=home");
+            exit();
+        }
 
+        // No hay sesión, mostrar el login
         $response = [
             'ua'    => ['sv' => 0],
             'title' => "Iniciar sesión",
             'code'  => 200
         ];
+
         View::render('auth/inisession', $response);
     }
 

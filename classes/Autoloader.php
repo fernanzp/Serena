@@ -10,13 +10,9 @@ class Autoloader
     }
 
     private static function autoload($class)
-    {
-        echo "Intentando cargar: $class<br>";
-        
+    {   
         // Convertimos el namespace en ruta de archivo
         $classPath = ROOT . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
-
-        echo "Buscando en: $classPath<br>";
 
         if (file_exists($classPath)) {
             require_once $classPath;
