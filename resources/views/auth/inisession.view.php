@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
-    <link rel="stylesheet" href="/Serena/public/assets/css/inisession_styles.css">
+    <link rel="stylesheet" href="/Serena/public/assets/css/auth_styles.css">
 </head>
 <body>
     <h1>Iniciar sesión</h1>
